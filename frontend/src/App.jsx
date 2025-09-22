@@ -5,7 +5,7 @@ import { teacherRoutes, studentRoutes } from "./routes";
 import Loading from "./Components/Common/Loading";
 import PrivateRoute from "./Components/PrivateRoute";
 import Login from "./Pages/Login";
-import Signup from "./Pages/signup";
+import Signup from "./Pages/Signup";
 
 const NotFound = lazy(() => import("./Pages/notFound"));
 const Home = lazy(() => import("./Pages/Home"));
