@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+/* 
+body {
+  font-family: "Inter", sans-serif;
+} */
+
+div[data-tippy-root] {
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Optional: Removes any default margin added by the spin buttons */
+}
