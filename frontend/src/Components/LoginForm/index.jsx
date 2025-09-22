@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 function LoginForm() {
     const { userLoginInfo, phone, password } = useSelector(loginSelector);
+    console.log('userLoginInfo:', userLoginInfo);
     const [loginUser, { isLoading }] = useGetUserInfoToLoginMutation();
     
     const handleSubmit = async (e) => {
