@@ -8,7 +8,8 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 
 const NotFound = lazy(() => import("./Pages/notFound"));
-const Home = lazy(() => import("./Pages/Home"));
+const StudentHome = lazy(() => import("./Pages/StudentHome"));
+const TeacherHome = lazy(() => import("./Pages/TeacherHome"));
 
 const TeacherLayout = lazy(() => import("./Components/Teacher/Layout"));
 const StudentLayout = lazy(() => import("./Components/Student/Layout"));
@@ -36,16 +37,26 @@ function App() {
     <Suspense fallback={<Loading />}>
       <Router>
         <Routes>
+
           <Route
-            path="/"
+            path="/student-home"
             element={
-              <PrivateRoute userType={null}>
-                <Home />
+              <PrivateRoute userType="Student">
+                <StudentHome />
               </PrivateRoute>
             }
           />
 
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/teacher-home"
+            element={
+              <PrivateRoute userType="Teacher">
+                <TeacherHome />
+              </PrivateRoute>
+            }
+          />
+
+          <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
           {/* Teacher Routes */}

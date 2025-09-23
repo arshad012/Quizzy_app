@@ -14,7 +14,7 @@ function TeacherDashboard() {
     }, [])
 
     const handleClick = () => {
-        navigate("/");
+        navigate("/teacher-home");
     }
 
     return (

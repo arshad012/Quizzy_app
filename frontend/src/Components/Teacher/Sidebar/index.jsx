@@ -32,7 +32,7 @@ function TeacherSidebar() {
                         className="max-h-full w-10"
                     />
                 </Link>
-                <Link to={'/'}>
+                <Link to={'/teacher-home'}>
                     <div className={`text-3xl font-bold ${isSidebarOpen ? '' : 'hidden'} bg-red-`}>Quizzy</div>
                 </Link>
             </div>

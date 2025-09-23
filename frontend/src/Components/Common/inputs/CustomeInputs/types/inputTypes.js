@@ -4,5 +4,6 @@ export const InputTypes = {
     DROP_DOWN: 'dropdown',
     CHECKBOX: 'checkbox',
     NUMBER: 'number',
-    RADIO: 'radio'
+    RADIO: 'radio',
+    PASSWORD: 'password'
 }

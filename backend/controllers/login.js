@@ -1,16 +1,16 @@
 import { SignUp } from '../models/index.js';
 
-export const loginUser = async (req, res, next) => {
+export const loginUser = async (req, res) => {
 
     try {
         const { phone, password } = req.body;
 
         if (!phone) {
-            return next(new Error('Phone number is required to Login'));
+            return res.status(401).json({message: "Phone number is required to Login"});
         }
 
         if (!password) {
-            return next(new Error('Password is required to Login'));
+            return res.status(401).json({message: "Password is required to Login"});
         }
 
         const user = await SignUp.findOne({ phone });
@@ -33,11 +33,10 @@ export const loginUser = async (req, res, next) => {
             data: user
         })
 
-    } catch (e) {
-        const error = new Error('Failed to login', {
-            casue: e
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: error.message
         })
-
-        return next(error);
     }
 }

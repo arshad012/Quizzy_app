@@ -3,24 +3,27 @@ import CustomDropDownInput from "../CustomDropdownInput"
 import CustomTextArea from "../CustomTextArea"
 import CustomTextInput from "../CustomTextInput"
 import CustomNumberInput from '../CustomNumberInput'
+import CustomPasswordInput from "../CustomPasswordInput"
 import { InputTypes } from "./types"
 import CustomRadioInputs from "../CustomRadioInputs"
 
 
-function HandleInputRender({inputType, ...props}) {
-    switch(inputType) {
-        case InputTypes.TEXT :
+function HandleInputRender({ inputType, ...props }) {
+    switch (inputType) {
+        case InputTypes.TEXT:
             return <CustomTextInput {...props} />
-        case InputTypes.MULTILINE : 
+        case InputTypes.MULTILINE:
             return <CustomTextArea {...props} />
-        case InputTypes.DROP_DOWN :
+        case InputTypes.DROP_DOWN:
             return <CustomDropDownInput {...props} />
-        case InputTypes.CHECKBOX : 
+        case InputTypes.CHECKBOX:
             return <CustomCheckbox {...props} />
-        case InputTypes.NUMBER :
+        case InputTypes.NUMBER:
             return <CustomNumberInput {...props} />
-        case InputTypes.RADIO :
+        case InputTypes.RADIO:
             return <CustomRadioInputs {...props} />
+        case InputTypes.PASSWORD:
+            return <CustomPasswordInput {...props} />
     }
 }
 

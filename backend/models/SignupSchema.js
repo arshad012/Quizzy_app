@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { userTypesEnum, genderEnum } from '../types/index.js';
+import { userTypesEnum } from '../types/index.js';
 
 const SignupSchema = new Schema({
     userType: {
@@ -14,16 +14,12 @@ const SignupSchema = new Schema({
     phone: {
         type: String,
         required: true,
-    },
-    gender: {
-        type: String,
-        enum: Object.values(genderEnum),
-        required: true
+        unique: true
     },
     password: {
         type: String,
         required: true
     }
-})
+});
 
 export const SignUp = model('SignUp', SignupSchema);

@@ -1,6 +1,5 @@
 import { LOGIN_USER } from "../../../../constants/api";
 import { apiSlice } from "../../../api";
-import { setLoginKey } from "../loginSlice";
 
 export const getUserInfoToLoginApi = apiSlice.injectEndpoints({
     endpoints: (build) => ({
@@ -13,14 +12,9 @@ export const getUserInfoToLoginApi = apiSlice.injectEndpoints({
             transformResponse: (response) => {
                 return response.data ?? {}
             },
-            onQueryStarted: async (arg, { queryFulfilled, dispatch }) => {
+            onQueryStarted: async (arg, { queryFulfilled }) => {
                 try {
                     const { data } = await queryFulfilled;
-                    dispatch(
-                        setLoginKey({ key: 'userLoginInfo', value: data })
-                    )
-
-                    localStorage.setItem("userLoginInfo", JSON.stringify(data));
                 } catch (error) {
                     console.log('Login failed in RTK query file.', error);
                 }
