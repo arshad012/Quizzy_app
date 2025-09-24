@@ -6,9 +6,8 @@ import { useDeleteTemplateMutation, useGetAllTemplatesQuery } from "../../../../
 
 export function useTemplatesData() {
     const navigate = useNavigate();
-    const { data = [] } = useGetAllTemplatesQuery();
+    const { data = [], error } = useGetAllTemplatesQuery();
     const [ triggerDelete ] = useDeleteTemplateMutation();
-    
     
     const rows = data.map((template) => {
         
@@ -42,5 +41,5 @@ export function useTemplatesData() {
         },
     ]
 
-    return { rows, actions }
+    return { rows, actions, error }
 }

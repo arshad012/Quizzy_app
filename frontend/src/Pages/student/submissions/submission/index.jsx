@@ -7,11 +7,13 @@ import Loading from '../../../../Components/Common/Loading'
 import StudentMatrics from "../../../../Components/Common/StudentMatrics"
 import QuestionBreakdown from "../../../../Components/Common/QuestionBreakdown"
 import { SubmissionTypes } from '../../../../Types'
+import AuthFailed from "../../../../Components/AuthFailed"
+import SomethingWrong from "../../../../Components/SomethingWrong"
 
 function SubmissionPage() {
     const { setHeading, setSubHeading } = useHeading();
     const { id } = useParams();
-    const { data = [], isLoading } = useGetSubmissionQuery(id, {
+    const { data = [], isLoading, error } = useGetSubmissionQuery(id, {
         skip: !id
     });
 
@@ -22,6 +24,12 @@ function SubmissionPage() {
 
     if (isLoading) {
         return <Loading />
+    }
+    if (error && error?.data?.authenticationFailed) {
+        return <AuthFailed />;
+    }
+    else if (error) {
+        return <SomethingWrong />;
     }
 
 

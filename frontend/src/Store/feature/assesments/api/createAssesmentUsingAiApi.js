@@ -1,5 +1,6 @@
 import { CREATE_ASSESMENT_USING_AI_URL } from "../../../../constants/api";
 import { apiSlice } from "../../../api";
+import { localStorageKey_token } from "../../../../Utils";
 
 export const createAssesmentUsingAIApi = apiSlice.injectEndpoints({
     endpoints: (build) => ({
@@ -7,7 +8,10 @@ export const createAssesmentUsingAIApi = apiSlice.injectEndpoints({
             query: (body) => ({
                 url: CREATE_ASSESMENT_USING_AI_URL,
                 method: 'POST',
-                body
+                body,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(localStorageKey_token)}`
+                }
             }),
             invalidatesTags: ["Assesments"]
         }),

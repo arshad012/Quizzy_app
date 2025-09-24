@@ -5,7 +5,7 @@ import { useGetAllAssesmentsQuery, useDeleteAssesmentMutation } from "../../../.
 
 export function useAssesmentsData() {
     const navigate = useNavigate();
-    const { data: assesments = [] } = useGetAllAssesmentsQuery();
+    const { data: assesments = [], error } = useGetAllAssesmentsQuery();
     const [triggerDelete] = useDeleteAssesmentMutation();
     
     const rows = assesments.map((assesment) => (
@@ -35,5 +35,5 @@ export function useAssesmentsData() {
         },
     ]
 
-    return { rows, actions }
+    return { rows, actions, error }
 }

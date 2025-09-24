@@ -2,7 +2,6 @@
 import { QuestionTemplate, Template } from "../models/index.js";
 
 export const createTemplate = async (req, res, next) => {
-
     try {
         const { questionsTemplates: questionTemplatesJson = [] } = req.body;
         const template = new Template(req.body);
@@ -26,6 +25,7 @@ export const createTemplate = async (req, res, next) => {
 };
 
 export const getAllTemplates = async (req, res, next) => {
+
     try {
         const templates = await Template.find();
 

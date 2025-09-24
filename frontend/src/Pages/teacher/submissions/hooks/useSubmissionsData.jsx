@@ -5,7 +5,7 @@ import { useGetAllSubmissionsQuery } from "../../../../Store/feature/submissions
 
 export function useSubmissionsData() {
     const navigate = useNavigate();
-    const { data = [] } = useGetAllSubmissionsQuery();
+    const { data = [], error } = useGetAllSubmissionsQuery();
     
 
     const rows = data.map((submission) => ({
@@ -24,5 +24,5 @@ export function useSubmissionsData() {
         },
     ]
 
-    return { rows, actions }
+    return { rows, actions, error }
 }

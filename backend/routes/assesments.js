@@ -6,11 +6,12 @@ import {
     getAllAssessments,
     getAssessmentById,
 } from "../controllers/index.js";
+import { authMiddleware } from '../middleware/index.js';
 
 export const assessmentsRouter = Router();
 
-assessmentsRouter.get("/", getAllAssessments);
-assessmentsRouter.post("/createAssesment", createAssessment);
-assessmentsRouter.post("/ai", createAssesmentFromUI);
-assessmentsRouter.get("/:id", getAssessmentById);
-assessmentsRouter.delete("/:id", deleteAssessmentById);
+assessmentsRouter.get("/", authMiddleware, getAllAssessments);
+assessmentsRouter.post("/createAssesment", authMiddleware, createAssessment);
+assessmentsRouter.post("/ai", authMiddleware, createAssesmentFromUI);
+assessmentsRouter.get("/:id", authMiddleware, getAssessmentById);
+assessmentsRouter.delete("/:id", authMiddleware, deleteAssessmentById);

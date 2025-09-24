@@ -1,6 +1,6 @@
 
 export const commonInitialState = {
-    isSidebarOpen: true,
+    isSidebarOpen: JSON.parse(localStorage.getItem('sidebar-state')) ?? true,
     heading: "",
     subHeading: ""
 }

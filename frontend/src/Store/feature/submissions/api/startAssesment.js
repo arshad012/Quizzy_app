@@ -1,5 +1,6 @@
 import { START_ASSESSMENT_URL } from "../../../../constants/index.js";
 import { apiSlice } from "../../../api/index.js";
+import { localStorageKey_token } from "../../../../Utils";
 
 const startAssesmentApi = apiSlice.injectEndpoints({
     endpoints: (build) => ({
@@ -10,6 +11,9 @@ const startAssesmentApi = apiSlice.injectEndpoints({
                 body: {
                     assesmentId,
                 },
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(localStorageKey_token)}`
+                }
             }),
             invalidatesTags: ["Submissions"],
         }),

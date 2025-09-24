@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
 
-import { useHeading } from "../../../../Hooks"
+import { useHeading } from "../../../../Hooks";
 import Loading from "../../../../Components/Common/Loading";
 
 import TemplatesBasicDetailsForm from "../../../../Components/Teacher/Templates/Create/BasicDetailsForm";

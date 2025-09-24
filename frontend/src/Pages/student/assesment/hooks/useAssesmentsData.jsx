@@ -6,7 +6,7 @@ import { useStartAssesmentMutation } from '../../../../Store/feature/submissions
 
 export function useAssesmentsData() {
     const navigate = useNavigate();
-    const { data = [] } = useGetAllAssesmentsQuery();
+    const { data = [], error } = useGetAllAssesmentsQuery();
     const [triggerStartAssesment, { isLoading }] = useStartAssesmentMutation();
 
     const rows = data.map((assesment) => ({
@@ -29,5 +29,5 @@ export function useAssesmentsData() {
         },
     ]
 
-    return { rows, actions }
+    return { rows, actions, error }
 }

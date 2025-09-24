@@ -51,6 +51,7 @@ export const createAssessment = async (req, res, next) => {
 };
 
 export const getAllAssessments = async (req, res, next) => {
+
     try {
         const assesments = await Assesment.find({}).populate("template");
 
@@ -67,6 +68,7 @@ export const getAllAssessments = async (req, res, next) => {
 };
 
 export const getAssessmentById = async (req, res, next) => {
+
     try {
         const { id } = req.params;
 

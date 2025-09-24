@@ -68,6 +68,6 @@ app.get('*', (_, res) => {
     res.sendFile(path.resolve(_dirname, 'frontend', 'dist', 'index.html'));
 });
 
-cron.schedule('* * * * *', checkSubmissions);
+// cron.schedule('* * * * *', checkSubmissions);
 
 app.use(errorHandler);

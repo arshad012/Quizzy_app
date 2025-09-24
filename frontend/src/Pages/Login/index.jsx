@@ -24,17 +24,17 @@ function Login() {
     })
     const [show, setShow] = useState(false);
     
-    // useEffect(() => {
-    //     setHeading('Login Form');
+    useEffect(() => {
+        setHeading('Login Form');
 
-    //     const token = localStorage.getItem(localStorageKey_token);
-    //     if(token) {
-    //         const userInfo = JSON.parse(localStorage.getItem(localStorageKey_user));
-    //         if(userInfo) {
-    //             navigate(`/${(userInfo.userType).toLowerCase()}-home`);
-    //         }
-    //     }
-    // }, [])
+        const token = localStorage.getItem(localStorageKey_token);
+        if(token) {
+            const userInfo = JSON.parse(localStorage.getItem(localStorageKey_user));
+            if(userInfo) {
+                navigate(`/${(userInfo.userType).toLowerCase()}-home`);
+            }
+        }
+    }, [])
 
     const validateInputFieldOnChange = (key, value) => {
         let error = "";
@@ -65,12 +65,16 @@ function Login() {
     }
 
     const handleChange = (key, value) => {
-        validateInputFieldOnChange(key, value);
+        const submitClickedOnce = localStorage.getItem('submit-clicked-once');
+        if(submitClickedOnce) {
+            validateInputFieldOnChange(key, value);
+        }
         setFormData(prev => ({ ...prev, [key]: value }));
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        localStorage.setItem('submit-clicked-once', true);
 
         const tempErrors = validateInputFieldOnSubmit();
         setShowError(tempErrors);
@@ -81,10 +85,11 @@ function Login() {
         if (isLoading) return;
         try {
             const response = await loginUser(formData).unwrap();
-            console.log('response:', response)
             
             localStorage.setItem(localStorageKey_user, JSON.stringify(response.data.data));
             localStorage.setItem(localStorageKey_token, response.data.token);
+
+            localStorage.removeItem('submit-clicked-once');
 
             navigate(`/${(((response.data.data.userType).toLowerCase()))}-home`);
             

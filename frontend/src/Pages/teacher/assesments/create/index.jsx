@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -13,6 +13,8 @@ import { useGetAssesmentQuery } from "../../../../Store/feature/assesments/api";
 import { useGetAllTemplatesQuery } from "../../../../Store/feature/template/api/getAllTemplatesApi";
 import CreateAssesmentButton from "../../../../Components/Teacher/Assesments/CreateAssesmentButton";
 import FullQuestionComponent from "../../../../Components/Common/Question/FullQuestionComponent";
+import AuthFailed from "../../../../Components/AuthFailed";
+import SomethingWrong from "../../../../Components/SomethingWrong";
 
 
 function CreateAssesmentPage() {
@@ -22,7 +24,7 @@ function CreateAssesmentPage() {
         refetchOnMountOrArgChange: true,
         skip: !id
     });
-    const { data: templates = [] } = useGetAllTemplatesQuery();
+    const { data: templates = [], error } = useGetAllTemplatesQuery();
     const { template, title, description, questions = [] } = useSelector(assesmentsSelector);
 
     const { setHeading, setSubHeading } = useHeading();
@@ -44,6 +46,13 @@ function CreateAssesmentPage() {
         dispatch(
             setAssesmentKey({ key, value })
         )
+    }
+
+    if (error && error?.data?.authenticationFailed) {
+        return <AuthFailed />;
+    }
+    else if (error) {
+        return <SomethingWrong />;
     }
 
 
@@ -82,7 +91,7 @@ function CreateAssesmentPage() {
 
             {questions.length != 0 &&
                 <div>
-                    <h1 className="text-3xl font-bold">Generated Questions</h1>
+                    <h1 className="text-xl font-bold">Generated Questions</h1>
                     <div className="flex flex-col gap-6 mt-4">
                         {
                             questions.map((question, i) => (

@@ -8,6 +8,8 @@ import { useAssesmentsData } from "./hooks/useAssesmentsData";
 import { assesmentsColumns } from "./utils/assesmentsColumns";
 
 import CustomButton from "../../../Components/Common/CustomButton";
+import AuthFailed from "../../../Components/AuthFailed";
+import SomethingWrong from "../../../Components/SomethingWrong";
 
 function TeacherAssesmentsPage() {
     const navigate = useNavigate();
@@ -18,10 +20,17 @@ function TeacherAssesmentsPage() {
         setSubHeading('Create and manahe your assesments here');
     }, [])
 
-    const { rows = [], actions = [] } = useAssesmentsData();
-    
+    const { rows = [], actions = [], error } = useAssesmentsData();
+
     const handleClick = () => {
         navigate('/teacher/assesment/create');
+    }
+
+    if (error && error?.data?.authenticationFailed) {
+        return <AuthFailed />;
+    }
+    else if (error) {
+        return <SomethingWrong />;
     }
 
     return (

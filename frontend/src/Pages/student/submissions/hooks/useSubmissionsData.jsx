@@ -6,7 +6,7 @@ import { Trash2 } from "lucide-react";
 
 export function useSubmissionsData() {
     const navigate = useNavigate();
-    const { data = [] } = useGetAllSubmissionsQuery(undefined, {
+    const { data = [], error } = useGetAllSubmissionsQuery(undefined, {
         pollingInterval: 1000 * 60,
         refetchOnFocus: true
     });
@@ -45,5 +45,5 @@ export function useSubmissionsData() {
         }
     ]
 
-    return { rows, actions }
+    return { rows, actions, error }
 }

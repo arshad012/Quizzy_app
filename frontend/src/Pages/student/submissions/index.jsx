@@ -4,9 +4,8 @@ import { useHeading } from "../../../Hooks"
 import CustomTable from "../../../Components/Common/CustomTable";
 import { useSubmissionsData } from "./hooks";
 import { submissionsColumns } from "./utils";
-
-// import { RotateCw } from "lucide-react";
-// import '../../../App.css'
+import AuthFailed from "../../../Components/AuthFailed";
+import SomethingWrong from "../../../Components/SomethingWrong";
 
 
 function StudentSubmissionsPage() {
@@ -17,7 +16,14 @@ function StudentSubmissionsPage() {
         setSubHeading('View all your submissions here');
     }, [])
 
-    const { rows = [], actions = [] } = useSubmissionsData();
+    const { rows = [], actions = [], error } = useSubmissionsData();
+
+    if (error && error?.data?.authenticationFailed) {
+        return <AuthFailed />;
+    }
+    else if (error) {
+        return <SomethingWrong />;
+    }
 
     return (
         <div className="h-full bg-white overflow-auto">
@@ -32,19 +38,4 @@ function StudentSubmissionsPage() {
     )
 }
 
-export default StudentSubmissionsPage
-
-
-/*
-const loaderPositionStyle = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    display: isLoading ? 'block' : 'none'
-}
-
-<div style={loaderPositionStyle}>
-    <RotateCw size={60} className="animate-spin text-gray-500" />
-</div>
- */
+export default StudentSubmissionsPage;

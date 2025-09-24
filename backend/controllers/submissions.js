@@ -51,7 +51,6 @@ export const submitAssesment = async (req, res, next) => {
 }
 
 
-
 export const startAssesment = async (req, res, next) => {
     try {
         const { assesmentId } = req.body;
@@ -119,7 +118,6 @@ export const getSubmissionById = async (req, res, next) => {
 
 
 export const deleteSubmission = async (req, res, next) => {
-
     const { id } = req.params;
 
     if(!id) {

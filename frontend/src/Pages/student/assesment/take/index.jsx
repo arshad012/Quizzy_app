@@ -7,11 +7,13 @@ import { useEffect } from 'react';
 import AssesmentQuestion from '../../../../Components/Student/TakeAssesment/AssesmentQuestion';
 import { useSelector } from 'react-redux';
 import { assesmentsSelector } from '../../../../Store/feature/assesments/selectors';
+import AuthFailed from '../../../../Components/AuthFailed';
+import SomethingWrong from '../../../../Components/SomethingWrong';
 
 function TakeAssesmentPage() {
     const { id } = useParams();
     const { title = '', description = '' } = useSelector(assesmentsSelector);
-    const { data, isLoading } = useGetAssesmentQuery(id, {
+    const { data, isLoading, error } = useGetAssesmentQuery(id, {
         skip: !id
     })
 
@@ -24,6 +26,12 @@ function TakeAssesmentPage() {
 
     if (isLoading) {
         return <Loading />
+    }
+    if (error && error?.data?.authenticationFailed) {
+        return <AuthFailed />;
+    }
+    else if (error) {
+        return <SomethingWrong />;
     }
 
     return (

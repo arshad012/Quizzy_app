@@ -4,6 +4,8 @@ import { useHeading } from "../../../Hooks"
 import CustomTable from "../../../Components/Common/CustomTable";
 import { useSubmissionsData } from "./hooks";
 import { submissionsColumns } from "./utils";
+import AuthFailed from "../../../Components/AuthFailed";
+import SomethingWrong from "../../../Components/SomethingWrong";
 
 
 function TeacherSubmissionsPage() {
@@ -14,7 +16,14 @@ function TeacherSubmissionsPage() {
         setSubHeading('View all your submissions here');
     }, [])
 
-    const { rows, actions } = useSubmissionsData();
+    const { rows, actions, error } = useSubmissionsData();
+
+    if (error && error?.data?.authenticationFailed) {
+        return <AuthFailed />;
+    }
+    else if (error) {
+        return <SomethingWrong />;
+    }
 
     return (
         <div className="h-full overflow-auto bg-white">
