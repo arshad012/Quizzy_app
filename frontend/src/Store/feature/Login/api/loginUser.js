@@ -10,15 +10,15 @@ export const getUserInfoToLoginApi = apiSlice.injectEndpoints({
                 body: { phone, password }
             }),
             transformResponse: (response) => {
-                return response.data ?? {}
+                return response;
             },
-            onQueryStarted: async (arg, { queryFulfilled }) => {
-                try {
-                    const { data } = await queryFulfilled;
-                } catch (error) {
-                    console.log('Login failed in RTK query file.', error);
-                }
-            },
+            // onQueryStarted: async (arg, { queryFulfilled }) => {
+            //     try {
+            //         const { data } = await queryFulfilled;
+            //     } catch (error) {
+            //         console.log('Login failed in RTK query file.', error);
+            //     }
+            // },
         }),
     })
 })

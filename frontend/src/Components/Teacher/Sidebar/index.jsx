@@ -25,7 +25,7 @@ function TeacherSidebar() {
         <div className='h-full w-full border-r flex flex-col'>
 
             <div className={`h-16 ${isSidebarOpen ? "pl-4" : "p-0 justify-center"} w-full border-b flex items-center`}>
-                <Link to={'/'}>
+                <Link to={'/teacher-home'}>
                     <img
                         src='../../../logo/quizzy_logo.png'
                         alt="Quizzy logo"

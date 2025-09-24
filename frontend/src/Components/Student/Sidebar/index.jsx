@@ -25,7 +25,7 @@ function StudentSidebar() {
         <div className='h-full w-full border-r flex flex-col'>
             
             <div className={`h-16 ${isSidebarOpen ? "px-4" : "p-0 justify-center"} w-full border-b flex items-center`}>
-                <Link to={'/'}>
+                <Link to={'/student-home'}>
                     <img
                         src='../../../logo/quizzy_logo.png'
                         alt="Quizzy logo"

@@ -119,6 +119,7 @@ function SignupForm() {
                             label='Name'
                             placeholder='Enter name'
                             id='userName'
+                            className={`${showError.name ? "border-red-500 border-2" : ""}`}
                         />
                         <p className={`text-red-500 text-sm`}>{showError.name}</p>
                     </div>
@@ -131,6 +132,7 @@ function SignupForm() {
                             label='Phone number'
                             placeholder='Enter phone number'
                             id='userPhone'
+                            className={`${showError.phone ? "border-red-500 border-2" : ""}`}
                         />
                         <p className={`text-red-500 text-sm`}>{showError.phone}</p>
                     </div>
@@ -177,7 +179,7 @@ function SignupForm() {
                                     placeholder='Password...'
                                     id='userPassword'
                                     maxLength='15'
-                                    className="rounded-r-none"
+                                    className={`rounded-r-none ${showError.password ? "border-red-500 border-2" : ""}`}
                                 />
                             </div>
                             <CustomButton
@@ -201,6 +203,7 @@ function SignupForm() {
                                     label='Confirm password'
                                     placeholder='Confirm password...'
                                     id='userConfirmPassword'
+                                    className={`rounded-r-none ${showError.confirmPassword ? "border-red-500 border-2" : ""}`}
                                 />
                             </div>
                             <CustomButton

@@ -1,4 +1,6 @@
 import { SignUp } from '../models/index.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 export const loginUser = async (req, res) => {
 
@@ -6,11 +8,11 @@ export const loginUser = async (req, res) => {
         const { phone, password } = req.body;
 
         if (!phone) {
-            return res.status(401).json({message: "Phone number is required to Login"});
+            return res.status(401).json({ message: "Phone number is required to Login" });
         }
 
         if (!password) {
-            return res.status(401).json({message: "Password is required to Login"});
+            return res.status(401).json({ message: "Password is required to Login" });
         }
 
         const user = await SignUp.findOne({ phone });
@@ -21,16 +23,26 @@ export const loginUser = async (req, res) => {
             })
         }
 
-        if (user.password != password) {
+        const isPasswordMatched = await bcrypt.compare(password, user.password);
+        if (!isPasswordMatched) {
             return res.status(401).json({
                 success: false,
                 message: 'Wrong password'
             })
         }
 
+        const token = jwt.sign(
+            { userId: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        )
+
         return res.status(200).json({
             success: true,
-            data: user
+            data: {
+                token,
+                data: user
+            }
         })
 
     } catch (error) {

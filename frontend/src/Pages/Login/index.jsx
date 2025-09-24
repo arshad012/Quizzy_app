@@ -24,15 +24,17 @@ function Login() {
     })
     const [show, setShow] = useState(false);
     
-    useEffect(() => {
-        setHeading('Login Form');
+    // useEffect(() => {
+    //     setHeading('Login Form');
 
-        const token = localStorage.getItem(localStorageKey_token);
-        if(token) {
-            const userInfo = JSON.parse(localStorage.getItem(localStorageKey_user));
-            navigate(`/${(userInfo.userType).toLowerCase()}/dashboard`);
-        }
-    }, [])
+    //     const token = localStorage.getItem(localStorageKey_token);
+    //     if(token) {
+    //         const userInfo = JSON.parse(localStorage.getItem(localStorageKey_user));
+    //         if(userInfo) {
+    //             navigate(`/${(userInfo.userType).toLowerCase()}-home`);
+    //         }
+    //     }
+    // }, [])
 
     const validateInputFieldOnChange = (key, value) => {
         let error = "";
@@ -78,15 +80,16 @@ function Login() {
 
         if (isLoading) return;
         try {
-            const data = await loginUser(formData).unwrap();
+            const response = await loginUser(formData).unwrap();
+            console.log('response:', response)
             
-            localStorage.setItem(localStorageKey_user, JSON.stringify(data));
-            localStorage.setItem(localStorageKey_token, true);
+            localStorage.setItem(localStorageKey_user, JSON.stringify(response.data.data));
+            localStorage.setItem(localStorageKey_token, response.data.token);
 
-            navigate(`/${(((data.userType).toLowerCase()))}/dashboard`);
+            navigate(`/${(((response.data.data.userType).toLowerCase()))}-home`);
             
         } catch (error) {
-            console.error("❌ Login error:", error.data);
+            console.error("❌ Login error:", error);
             if (error.data.message === "User not found") {
                 setShowError(prev => ({ ...prev, phone: error.data.message }));
             }
@@ -116,6 +119,7 @@ function Login() {
                                 onChange={(value) => handleChange('phone', value)}
                                 placeholder='Enter phone number'
                                 id='phoneNumber'
+                                className={`${showError.phone ? "border-red-500 border-2" : ""}`}
                             />
                             <p className={`text-red-400 text-sm`}>{showError.phone}</p>
                         </div>
@@ -129,7 +133,7 @@ function Login() {
                                         onChange={(value) => handleChange('password', value)}
                                         placeholder='Enter Password'
                                         id='password'
-                                        className='rounded-r-none'
+                                        className={`rounded-r-none ${showError.password ? "border-red-500 border-2" : ""}`}
                                     />
                                 </div>
                                 <CustomButton 
