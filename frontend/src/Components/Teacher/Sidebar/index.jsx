@@ -43,7 +43,7 @@ function TeacherSidebar() {
                 }
             </div>
 
-            <div className='flex-1 border-b'></div>
+            <div className='flex-1 border-b' onClick={collpaseSidebarHandler}></div>
 
             <div className="p-2">
                 <SidebarButton onclick={collpaseSidebarHandler} icon={isSidebarOpen ? <ChevronLeft /> : <ChevronRight />} label='Collapse' />

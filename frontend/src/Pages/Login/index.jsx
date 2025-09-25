@@ -9,6 +9,7 @@ import CustomInputs from "../../Components/Common/inputs/CustomeInputs";
 import CustomButton from "../../Components/Common/CustomButton";
 import { InputTypes } from "../../Components/Common/inputs/CustomeInputs/types";
 import { localStorageKey_token, localStorageKey_user } from "../../Utils";
+import styles from './login.module.css';
 
 function Login() {
     const navigate = useNavigate();
@@ -110,7 +111,7 @@ function Login() {
         <div>
             <Header />
             {/*  */}
-            <div className="border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 bg-white shadow-xl">
+            <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 bg-white shadow-xl ${styles.glowingBorder}`}>
 
                 <p className="text-center text-3xl font-bold">Quizzy</p>
                 <p className="text-center">Enter your login credentials</p>

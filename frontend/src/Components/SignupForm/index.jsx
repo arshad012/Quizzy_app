@@ -42,7 +42,7 @@ function SignupForm() {
                 if (!validatePhone(value)) error = "Invalid phone number";
                 break;
             case "password":
-                if (!validatePassword(value)) error = "Invalid password";
+                if (!validatePassword(value)) error = "Invalid password, password must have";
                 break;
             default:
                 null;
@@ -62,8 +62,8 @@ function SignupForm() {
 
         if (!formData.userType) tempErrors.userType = "Please select your role";
 
-        if (!formData.password) tempErrors.password = "Please create your password";
-        else if (!validatePassword(formData.password)) tempErrors.password = "Invalid password";
+        if (!formData.password) tempErrors.password = "Please create your password, password must have";
+        else if (!validatePassword(formData.password)) tempErrors.password = "Invalid password, password must have";
 
         if (!formData.confirmPassword) tempErrors.confirmPassword = "Please re-enter your password";
         else if (formData.password !== formData.confirmPassword) tempErrors.confirmPassword = "Password not matched";
@@ -191,6 +191,13 @@ function SignupForm() {
                         </div>
 
                         <p className={`text-red-500 text-sm`}>{showError.password}</p>
+                        {showError.password &&
+                            <ul className="text-red-500 text-sm list-disc ml-5 mt-1">
+                                <li>Atleast one capital and one small letter</li>
+                                <li>Atleast one digit</li>
+                                <li>Atleast one special character @ # $ % & *</li>
+                            </ul>
+                        }
                     </div>
 
                     <div>
