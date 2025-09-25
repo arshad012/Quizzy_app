@@ -29,7 +29,7 @@ function CreateAssesmentButton() {
                 <Loader2 size={20} className='animate-spin' /> 
             ) : ( 
             <Save size={15} />
-            )} Save Assesment
+            )} Save Assesment 
         </CustomButton>
     )
 }

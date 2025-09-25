@@ -8,6 +8,7 @@ import CustomInputs from "../Common/inputs/CustomeInputs";
 import { InputTypes } from "../Common/inputs/CustomeInputs/types";
 import { userTypes } from "../Common/inputs/CustomeInputs/Utils";
 import { validateName, validatePassword, validatePhone } from './utils/validation'
+import styles from './signup.module.css';
 
 function SignupForm() {
     const navigate = useNavigate();
@@ -104,7 +105,7 @@ function SignupForm() {
     }
 
     return (
-        <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 bg-white shadow-xl ${signupSuccess ? "border-green-500 border-4" : ""}`}>
+        <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 bg-white shadow-xl ${signupSuccess ? styles.glowingBorder : ""}`}>
 
             <p className="text-center text-3xl font-bold">Quizzy</p>
             <p className="text-center">Enter your details to register</p>
@@ -119,7 +120,7 @@ function SignupForm() {
                             label='Name'
                             placeholder='Enter name'
                             id='userName'
-                            className={`${showError.name ? "border-red-500 border-2" : ""}`}
+                            className={`${showError.name ? "border-red-500 border-2" : ""} ${signupSuccess ? "border-green-500 border-2" : ""}`}
                         />
                         <p className={`text-red-500 text-sm`}>{showError.name}</p>
                     </div>
@@ -132,7 +133,7 @@ function SignupForm() {
                             label='Phone number'
                             placeholder='Enter phone number'
                             id='userPhone'
-                            className={`${showError.phone ? "border-red-500 border-2" : ""}`}
+                            className={`${showError.phone ? "border-red-500 border-2" : ""} ${signupSuccess ? "border-green-500 border-2" : ""}`}
                         />
                         <p className={`text-red-500 text-sm`}>{showError.phone}</p>
                     </div>
@@ -179,7 +180,7 @@ function SignupForm() {
                                     placeholder='Password...'
                                     id='userPassword'
                                     maxLength='15'
-                                    className={`rounded-r-none ${showError.password ? "border-red-500 border-2" : ""}`}
+                                    className={`rounded-r-none ${showError.password ? "border-red-500 border-2" : ""} ${signupSuccess ? "border-green-500 border-2" : ""}`}
                                 />
                             </div>
                             <CustomButton
@@ -210,7 +211,7 @@ function SignupForm() {
                                     label='Confirm password'
                                     placeholder='Confirm password...'
                                     id='userConfirmPassword'
-                                    className={`rounded-r-none ${showError.confirmPassword ? "border-red-500 border-2" : ""}`}
+                                    className={`rounded-r-none ${showError.confirmPassword ? "border-red-500 border-2" : ""} ${signupSuccess ? "border-green-500 border-2" : ""}`}
                                 />
                             </div>
                             <CustomButton
@@ -227,7 +228,7 @@ function SignupForm() {
 
                 <div className="mt-5">
                     {signupSuccess &&
-                        <p className="text-center text-green-600 mb-5">Signup successfull, please wait...</p>
+                        <p className="text-center text-lg text-green-500 mb-5">Signup successfull, please wait...</p>
                     }
                     <CustomButton type='submit' className="justify-center gap-4 disabled:opacity-50 disabled:cursor-no-drop w-full" disabled={isLoading}>
                         {isLoading && <Loader size={20} className="animate-spin" />}

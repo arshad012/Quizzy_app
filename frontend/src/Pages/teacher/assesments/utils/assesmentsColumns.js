@@ -5,7 +5,15 @@ export const assesmentsColumns = [
         label: 'Title'
     },
     {
-        id: 'template',
-        label: 'Template'
-    }
+        id: 'createdBy',
+        label: 'Created By'
+    },
+    {
+        id: 'createdAt',
+        label: 'Created At'
+    },
+    // {
+    //     id: 'template',
+    //     label: 'Template'
+    // }
 ]

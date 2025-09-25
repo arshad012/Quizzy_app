@@ -13,9 +13,9 @@
 .glowingBorder::after, .glowingBorder::before {
     content: "";
     position: absolute;
-    height: 103%;
-    width: 103%;
-    background-image: conic-gradient(from var(--angle), transparent 10%, #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+    height: 102%;
+    width: 102%;
+    background-image: conic-gradient(from var(--angle), transparent 10%, #00ff99);
     top: 50%;
     left: 50%;
     translate: -50% -50%;

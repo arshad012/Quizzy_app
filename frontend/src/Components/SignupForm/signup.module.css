@@ -1,0 +1,19 @@
+
+.glowingBorder {
+    position: relative;
+}
+
+.glowingBorder::after, .glowingBorder::before {
+    content: "";
+    position: absolute;
+    height: 102%;
+    width: 102%;
+    background-image: conic-gradient(#00ff99);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0.5;
+    filter: blur(4px);
+}

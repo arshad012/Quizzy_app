@@ -19,7 +19,6 @@ import SomethingWrong from "../../../../Components/SomethingWrong";
 
 function CreateAssesmentPage() {
     const { id } = useParams();
-    console.log('id:', id)
     const { isLoading } = useGetAssesmentQuery(id, {
         refetchOnMountOrArgChange: true,
         skip: !id

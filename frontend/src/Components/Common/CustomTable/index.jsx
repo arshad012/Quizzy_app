@@ -1,5 +1,21 @@
+import { getTimeTaken } from "../../../Utils"
 
 function CustomTable({ columns = [], data = [], actions = [], shouldShowActions = true }) {
+
+    for(let el of data) {
+        if(el.createdAt) {
+            el.createdAt = getTimeTaken(el.createdAt);
+        }
+        if(el.startedAt) {
+            el.startedAt = getTimeTaken(el.startedAt);
+        }
+        if(el.submittedAt) {
+            el.submittedAt = getTimeTaken(el.submittedAt);
+        }
+        // if(el.totalMarks) {
+        //     el.score = el.totalMarks;
+        // }
+    }
 
     return (
         <div className="overflow-x-auto">
@@ -36,7 +52,8 @@ function CustomTable({ columns = [], data = [], actions = [], shouldShowActions 
                         <tr key={row.id}>
                             {columns.map((column) => (
                                 <td key={column.id} className="border p-1 text-sm">
-                                    {row[column.id] ?? "N/A"}
+                                    {typeof row[column.id] === 'object' ? (row[column.id]?.name ?? "N/A") : (row[column.id] ?? "N/A")}
+                                    {/* {row[column.id] ?? "N/A"} */}
                                 </td>
                             ))}
 

@@ -12,4 +12,12 @@ export const templatesColumns = [
         id: 'gradeLevel',
         label: 'Grade Level'
     },
+    {
+        id: 'createdAt',
+        label: 'Created At'
+    },
+    {
+        id: 'createdBy',
+        label: 'Created By'
+    },
 ]

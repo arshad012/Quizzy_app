@@ -5,6 +5,10 @@ export const submissionsColumns = [
         label: 'Assesment'
     },
     {
+        id: 'submittedBy',
+        label: 'Submitted By'
+    },
+    {
         id: 'status',
         label: 'Status'
     },
@@ -17,7 +21,15 @@ export const submissionsColumns = [
         label: 'Submitted At'
     },
     {
-        id: 'score',
-        label: 'Score'
-    }
+        id: 'maxMarks',
+        label: 'Total Marks'
+    },
+    {
+        id: 'totalMarks',
+        label: 'Marks Scored'
+    },
+    // {
+    //     id: 'score',
+    //     label: 'Score'
+    // },
 ]

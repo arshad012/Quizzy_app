@@ -13,13 +13,15 @@ import { resetTemplteState } from "../../../../Store/feature/template/templateSl
 
 import { useGetTemplateQuery } from "../../../../Store/feature/template/api";
 import CreateTemplateButton from "../../../../Components/Teacher/Templates/Create/CreateTemplateButton";
+import AuthFailed from "../../../../Components/AuthFailed";
+import SomethingWrong from "../../../../Components/SomethingWrong";
 
 
 function CreateTemplatePage() {
     const { setHeading, setSubHeading } = useHeading();
     const dispatch = useDispatch();
     const { id } = useParams();
-    const { isLoading } = useGetTemplateQuery(id, {
+    const { isLoading, error } = useGetTemplateQuery(id, {
         refetchOnMountOrArgChange: true,
         skip: !id
     });
@@ -35,8 +37,14 @@ function CreateTemplatePage() {
         }
     }, [])
 
-    if(isLoading) {
+    if (isLoading) {
         return <Loading />
+    }
+    if (error && error?.data?.authenticationFailed) {
+        return <AuthFailed />;
+    }
+    else if (error) {
+        return <SomethingWrong />;
     }
 
     return (

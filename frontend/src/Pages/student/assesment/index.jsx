@@ -12,7 +12,7 @@ function StudentAssesmentsPage() {
 
     useEffect(() => {
         setHeading('Assesments');
-        setSubHeading('Take and manahe your assesments here');
+        setSubHeading('Take and manage your assessments here');
     }, [])
 
     const { rows, actions, error } = useAssesmentsData();

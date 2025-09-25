@@ -1,8 +1,6 @@
 import { localStorageKey_token, localStorageKey_user } from "../../Utils";
 
 function SomethingWrong() {
-    localStorage.removeItem(localStorageKey_user);
-    localStorage.removeItem(localStorageKey_token);
     
     return (
         <div>

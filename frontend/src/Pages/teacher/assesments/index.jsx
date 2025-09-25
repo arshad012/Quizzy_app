@@ -21,7 +21,7 @@ function TeacherAssesmentsPage() {
     }, [])
 
     const { rows = [], actions = [], error } = useAssesmentsData();
-
+    
     const handleClick = () => {
         navigate('/teacher/assesment/create');
     }
