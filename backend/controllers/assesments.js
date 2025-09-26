@@ -1,4 +1,4 @@
-import { Assesment } from "../models/index.js";
+import { Assesment, SignUp } from "../models/index.js";
 import {
     calculateTotalMarks,
     createAssesmentQuestions,
@@ -6,14 +6,20 @@ import {
 
 export const createAssesmentFromUI = async (req, res, next) => {
     try {
-        const assesment = new Assesment(req.body);
-        
+        const user = await SignUp.findById(req.userId);
+        const createdBy = {
+            id: user._id,
+            name: user.name
+        }
+
+        const assesment = new Assesment({ ...req.body, createdBy });
+
         const questions = await createAssesmentQuestions(assesment);
         const totalMarks = calculateTotalMarks(questions);
-        
+
         assesment.totalMarks = totalMarks;
         assesment.questions = questions;
-                
+
         await assesment.save();
 
         return res.status(201).json({
@@ -29,6 +35,7 @@ export const createAssesmentFromUI = async (req, res, next) => {
 };
 
 export const createAssessment = async (req, res, next) => {
+
     try {
         const { questions = [] } = req.body;
         const totalMarks = calculateTotalMarks(questions);

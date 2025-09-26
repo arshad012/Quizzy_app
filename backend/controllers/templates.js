@@ -1,15 +1,20 @@
 
-import { QuestionTemplate, Template } from "../models/index.js";
+import { QuestionTemplate, SignUp, Template } from "../models/index.js";
 
 export const createTemplate = async (req, res, next) => {
+
     try {
+        const user = await SignUp.findById(req.userId);
+        const createdBy = {
+            id: user._id,
+            name: user.name
+        }
+
         const { questionsTemplates: questionTemplatesJson = [] } = req.body;
-        const template = new Template(req.body);
-        
+        const template = new Template({ ...req.body, createdBy: createdBy });
+
         const questionsTemplates = questionTemplatesJson.map((questionTemplate) => new QuestionTemplate(questionTemplate));
-        
-        template.questionsTemplates = questionsTemplates;
-        
+
         const savedTemplate = await template.save();
 
         return res.status(201).json({

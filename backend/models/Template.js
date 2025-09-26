@@ -21,6 +21,14 @@ const TemplateSchema = new Schema(
             type: [QuestionTemplateSchema],
             required: true,
         },
+        createdBy: {
+            type: Object,
+            required: true
+            // type: Schema.Types.ObjectId,
+            // ref: 'SignUp',
+            // required: true,
+            // unique: false
+        }
     },
     {
         timestamps: true,

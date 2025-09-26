@@ -12,9 +12,6 @@ function CustomTable({ columns = [], data = [], actions = [], shouldShowActions 
         if(el.submittedAt) {
             el.submittedAt = getTimeTaken(el.submittedAt);
         }
-        // if(el.totalMarks) {
-        //     el.score = el.totalMarks;
-        // }
     }
 
     return (
@@ -52,7 +49,9 @@ function CustomTable({ columns = [], data = [], actions = [], shouldShowActions 
                         <tr key={row.id}>
                             {columns.map((column) => (
                                 <td key={column.id} className="border p-1 text-sm">
-                                    {typeof row[column.id] === 'object' ? (row[column.id]?.name ?? "N/A") : (row[column.id] ?? "N/A")}
+                                    {/* {typeof row[column.id] === 'object' ? (row[column.id]?.name ?? "N/A") : (row[column.id] ?? "N/A")} */}
+                                    {typeof row[column.id] === 'object' && (row[column.id]?.name ?? "N/A")}
+                                    {typeof row[column.id] != 'object' && (row[column.id] ?? "N/A")}
                                     {/* {row[column.id] ?? "N/A"} */}
                                 </td>
                             ))}

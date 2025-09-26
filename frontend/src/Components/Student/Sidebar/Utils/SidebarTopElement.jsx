@@ -7,7 +7,7 @@ export const SidebarTopElements = [
         icon: <LayoutDashboard />
     },
     {
-        label: 'Assesment',
+        label: 'Assessment',
         to: '/student/assesments',
         icon: <TestTubeDiagonal />
     },

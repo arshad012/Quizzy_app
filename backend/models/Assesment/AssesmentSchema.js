@@ -34,6 +34,14 @@ const AssesmentSchema = new Schema(
             type: [BaseQuestionSchema],
             required: true,
         },
+        createdBy: {
+            type: Object,
+            required: true
+            // type: Schema.Types.ObjectId,
+            // ref: 'SignUp',
+            // required: true,
+            // unique: false
+        }
     },
     {
         timestamps: true,

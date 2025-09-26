@@ -6,7 +6,6 @@ export const authMiddleware = async (req, res, next) => {
         if (!authHeader) {
             return res.status(401).json({
                 message: 'No headers found',
-                authenticationFailed: true
             })
         }
 
@@ -14,7 +13,6 @@ export const authMiddleware = async (req, res, next) => {
         if (!token) {
             return res.status(401).json({
                 message: 'No token found',
-                authenticationFailed: true
             })
         }
 

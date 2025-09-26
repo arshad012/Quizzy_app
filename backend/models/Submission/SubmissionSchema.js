@@ -31,6 +31,10 @@ export const SubmissionSchema = new Schema(
             enum: Object.values(SubmissionStatusEnum),
             default: SubmissionStatusEnum.IN_PROGRESS
         },
+        submittedBy: {
+            type: Object,
+            required: true
+        },
         answers: {
             type: [SubmissionAnswerSchema]
         }
@@ -40,7 +44,7 @@ export const SubmissionSchema = new Schema(
     },
 );
 
-SubmissionSchema.pre("save", async function(next) {
+SubmissionSchema.pre("save", async function (next) {
     const assesment = await Assesment.findById(this.assesmentId);
 
     const maxMarks = (assesment.questions ?? [])?.reduce((totalMarks, question) => totalMarks + question.marks, 0);

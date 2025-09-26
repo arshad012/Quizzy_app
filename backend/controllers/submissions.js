@@ -1,8 +1,9 @@
-import { Submission } from "../models/index.js";
+import { Submission, SignUp } from "../models/index.js";
 import { SubmissionStatusEnum, QuestionTypeEnum } from "../types/index.js";
 
 
 export const submitAssesment = async (req, res, next) => {
+    
     try {
         const { id } = req.params;
         const { responses } = req.body;
@@ -53,10 +54,16 @@ export const submitAssesment = async (req, res, next) => {
 
 export const startAssesment = async (req, res, next) => {
     try {
+        const user = await SignUp.findById(req.userId);
+        const submittedBy = {
+            id: user._id,
+            name: user.name
+        }
         const { assesmentId } = req.body;
 
         const submission = new Submission({
-            assesmentId: assesmentId
+            assesmentId: assesmentId,
+            submittedBy
         })
 
         await submission.save()

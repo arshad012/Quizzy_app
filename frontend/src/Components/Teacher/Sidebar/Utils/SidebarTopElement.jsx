@@ -12,12 +12,12 @@ export const SidebarTopElements = [
         icon: <BookDashed />
     },
     {
-        label: 'Assesment',
+        label: 'Assessment',
         to: '/teacher/assesment',
         icon: <TestTubeDiagonal />
     },
     {
-        label: 'Submission',
+        label: 'Submissions',
         to: '/teacher/submissions',
         icon: <Send />
     }
