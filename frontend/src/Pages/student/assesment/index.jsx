@@ -11,8 +11,6 @@ import { useSelector } from "react-redux";
 
 function StudentAssesmentsPage() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
 
     const { setHeading, setSubHeading } = useHeading();
 

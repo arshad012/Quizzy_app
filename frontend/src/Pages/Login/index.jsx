@@ -117,7 +117,7 @@ function Login() {
         <div className={`bg-${bgColor} text-${textColor} h-screen`}>
             <Header className="h-16" />
             {/*  */}
-            <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 shadow-xl ${styles.glowingBorder}`}>
+            <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 shadow-xl bg-${bgColor} text-${textColor} ${''}`}>
 
                 <p className="text-center text-3xl font-bold">Quizzy</p>
                 <p className="text-center">Enter your login credentials</p>

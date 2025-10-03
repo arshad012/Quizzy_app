@@ -59,7 +59,7 @@ function CustomTable({ columns = [], data = [], actions = [], shouldShowActions 
                             ))}
 
                             {shouldShowActions && (
-                                <td className="border p-1 text-sm flex gap-4">
+                                <td className="p-1 text-sm border flex gap-4">
                                     {actions.map((action, i) => (
                                         <div
                                             key={i}
