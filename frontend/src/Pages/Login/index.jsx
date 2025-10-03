@@ -10,8 +10,14 @@ import CustomButton from "../../Components/Common/CustomButton";
 import { InputTypes } from "../../Components/Common/inputs/CustomeInputs/types";
 import { localStorageKey_token, localStorageKey_user } from "../../Utils";
 import styles from './login.module.css';
+import { useSelector } from "react-redux";
+import { appThemeSelector } from "../../Store/feature/appTheme/selector";
 
 function Login() {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
+    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+
     const navigate = useNavigate();
     const { setHeading } = useHeading();
     const [loginUser, { isLoading }] = useGetUserInfoToLoginMutation();
@@ -108,10 +114,10 @@ function Login() {
     }
 
     return (
-        <div>
-            <Header />
+        <div className={`bg-${bgColor} text-${textColor} h-screen`}>
+            <Header className="h-16" />
             {/*  */}
-            <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 bg-white shadow-xl ${styles.glowingBorder}`}>
+            <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 shadow-xl ${styles.glowingBorder}`}>
 
                 <p className="text-center text-3xl font-bold">Quizzy</p>
                 <p className="text-center">Enter your login credentials</p>

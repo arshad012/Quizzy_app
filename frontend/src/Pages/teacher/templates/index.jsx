@@ -8,8 +8,11 @@ import { useTemplatesData } from "./hooks/useTemplatesData";
 import CustomButton from "../../../Components/Common/CustomButton";
 import AuthFailed from "../../../Components/AuthFailed";
 import SomethingWrong from "../../../Components/SomethingWrong";
+import { appThemeSelector } from "../../../Store/feature/appTheme/selector";
+import { useSelector } from "react-redux";
 
 function TeacherTemplatesPage() {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
 
     const navigate = useNavigate();
     const { setHeading, setSubHeading } = useHeading();
@@ -24,8 +27,8 @@ function TeacherTemplatesPage() {
     const handleClick = () => {
         navigate('/teacher/templates/create');
     }
-
-    if(error && error?.data?.authenticationFailed) {
+    
+    if(error && (error?.data?.message)?.toLowerCase() === 'jwt expired') {
         return <AuthFailed />;
     } 
     else if(error) {
@@ -33,7 +36,7 @@ function TeacherTemplatesPage() {
     }
 
     return (
-        <div className="h-full overflow-auto bg-white">
+        <div className={`h-full overflow-auto bg-${quizzyAppColorMode === 'light' ? 'white' : 'black'}`}>
             <div className="mb-2">
                 <CustomButton onClick={handleClick}>Create Template</CustomButton>
             </div>

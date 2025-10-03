@@ -8,7 +8,7 @@ import { defaultQuestionConfig, extractAnswer } from './utils/index';
 function Question({ question, currentQuestionIndex, config = defaultQuestionConfig }) {
 
     return <div className='flex flex-col gap-4'>
-        {question.question && <h2 className='text-2xl gont-bold'>{currentQuestionIndex + 1}. {question.question}</h2>}
+        {question.question && <h2 className='text-2xl font-bold'>{currentQuestionIndex + 1}. {question.question}</h2>}
 
         <div>
             <HintComponent hints={question.hints || []} />

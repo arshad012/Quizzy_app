@@ -105,7 +105,7 @@ function SignupForm() {
     }
 
     return (
-        <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 bg-white shadow-xl ${signupSuccess ? styles.glowingBorder : ""}`}>
+        <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 bg-inherit shadow-xl ${signupSuccess ? styles.glowingBorder : ""}`}>
 
             <p className="text-center text-3xl font-bold">Quizzy</p>
             <p className="text-center">Enter your details to register</p>

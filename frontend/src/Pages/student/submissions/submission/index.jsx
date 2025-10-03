@@ -9,8 +9,14 @@ import QuestionBreakdown from "../../../../Components/Common/QuestionBreakdown"
 import { SubmissionTypes } from '../../../../Types'
 import AuthFailed from "../../../../Components/AuthFailed"
 import SomethingWrong from "../../../../Components/SomethingWrong"
+import { useSelector } from "react-redux"
+import { appThemeSelector } from "../../../../Store/feature/appTheme/selector"
 
 function SubmissionPage() {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
+    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+
     const { setHeading, setSubHeading } = useHeading();
     const { id } = useParams();
     const { data = [], isLoading, error } = useGetSubmissionQuery(id, {
@@ -25,7 +31,7 @@ function SubmissionPage() {
     if (isLoading) {
         return <Loading />
     }
-    if (error && error?.data?.authenticationFailed) {
+    if (error && (error?.data?.message)?.toLowerCase() === 'jwt expired') {
         return <AuthFailed />;
     }
     else if (error) {
@@ -34,7 +40,7 @@ function SubmissionPage() {
 
 
     return (
-        <div className="h-full bg-white overflow-auto">
+        <div className={`h-full bg-${bgColor} text-${textColor} overflow-auto`}>
             {data.status === SubmissionTypes.COMPLETED && <StudentMatrics data={data} />}
             <QuestionBreakdown data={data} />
         </div>

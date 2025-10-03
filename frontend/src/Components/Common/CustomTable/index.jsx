@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { getTimeTaken } from "../../../Utils"
+import { appThemeSelector } from "../../../Store/feature/appTheme/selector";
 
 function CustomTable({ columns = [], data = [], actions = [], shouldShowActions = true }) {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
 
     for(let el of data) {
         if(el.createdAt) {
@@ -16,9 +19,9 @@ function CustomTable({ columns = [], data = [], actions = [], shouldShowActions 
 
     return (
         <div className="overflow-x-auto">
-            <table className="border border-collapse w-full whitespace-nowrap min-w-[900px]">
+            <table className={`border border-collapse w-full whitespace-nowrap min-w-[900px] ${quizzyAppColorMode === 'light' ? 'text-black' : 'text-white'}`}>
                 <thead>
-                    <tr className="border bg-gray-100">
+                    <tr className={`border ${quizzyAppColorMode === 'light' ? 'bg-gray-100' : 'bg-gray-800'}`}>
                         {
                             columns.map((col) => (
                                 <th key={col.id} className="border p-2 uppercase text-sm text-left font-light">{col.label}</th>
@@ -48,8 +51,7 @@ function CustomTable({ columns = [], data = [], actions = [], shouldShowActions 
                     {data.map((row) => (
                         <tr key={row.id}>
                             {columns.map((column) => (
-                                <td key={column.id} className="border p-1 text-sm">
-                                    {/* {typeof row[column.id] === 'object' ? (row[column.id]?.name ?? "N/A") : (row[column.id] ?? "N/A")} */}
+                                <td key={column.id} className="border p-1 text-sm p-3">
                                     {typeof row[column.id] === 'object' && (row[column.id]?.name ?? "N/A")}
                                     {typeof row[column.id] != 'object' && (row[column.id] ?? "N/A")}
                                     {/* {row[column.id] ?? "N/A"} */}

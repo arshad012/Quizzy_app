@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom'
 
 import { useHeading } from "../../../Hooks"
 import CustomButton from '../../../Components/Common/CustomButton'
+import { appThemeSelector } from "../../../Store/feature/appTheme/selector";
+import { useSelector } from "react-redux";
 
 function StudentDashboard() {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
+    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
     const { setHeading, setSubHeading } = useHeading();
 
     useEffect(() => {
@@ -13,7 +18,7 @@ function StudentDashboard() {
     }, [])
 
     return (
-        <div className="h-full bg-white overflow-auto">
+        <div className={`h-full overflow-auto bg-${bgColor} text-${textColor}`}>
             <div>Student dashboard</div>
             <Link to={"/student-home"}>
                 <CustomButton>Home</CustomButton>

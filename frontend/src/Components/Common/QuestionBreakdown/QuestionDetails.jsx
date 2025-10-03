@@ -2,8 +2,13 @@ import { useParams } from "react-router-dom";
 import { getAnswerStyling, getCorrectAnswer } from "./utils";
 import { useGetSubmissionQuery } from "../../../Store/feature/submissions/api";
 import { SubmissionTypes } from '../../../Types'
+import { useSelector } from "react-redux";
+import { appThemeSelector } from "../../../Store/feature/appTheme/selector";
 
 function QuestionDetails({ question, answers, index }) {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-gray-100' : 'bg-gray-800';
+
     const answer = answers.find(answer => answer.questionId === question._id);
     const { id } = useParams();
     const { data = [] } = useGetSubmissionQuery(id, {
@@ -12,7 +17,7 @@ function QuestionDetails({ question, answers, index }) {
     const isCompleted = data.status === SubmissionTypes.COMPLETED;
 
     return (
-        <div className="bg-gray-50 p-2 rounded-md flex flex-col gap-2 border border-t-0">
+        <div className={`p-2 rounded-md flex flex-col gap-2 border border-t-0 ${bgColor}`}>
             <div>
                 <h3 className="font-semibold text-base">Question:</h3>
                 {question.question}

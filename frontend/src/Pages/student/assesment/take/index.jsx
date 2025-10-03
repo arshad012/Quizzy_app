@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { assesmentsSelector } from '../../../../Store/feature/assesments/selectors';
 import AuthFailed from '../../../../Components/AuthFailed';
 import SomethingWrong from '../../../../Components/SomethingWrong';
+import { appThemeSelector } from '../../../../Store/feature/appTheme/selector';
 
 function TakeAssesmentPage() {
     const { id } = useParams();
@@ -27,7 +28,7 @@ function TakeAssesmentPage() {
     if (isLoading) {
         return <Loading />
     }
-    if (error && error?.data?.authenticationFailed) {
+    if (error && (error?.data?.message)?.toLowerCase() === 'jwt expired') {
         return <AuthFailed />;
     }
     else if (error) {
@@ -35,7 +36,7 @@ function TakeAssesmentPage() {
     }
 
     return (
-        <div className='flex h-full bg-white overflow-auto'>
+        <div className={`flex h-full bg-inherit overflow-auto`}>
             <AssesmentQuestion />
             <Progress />
         </div>

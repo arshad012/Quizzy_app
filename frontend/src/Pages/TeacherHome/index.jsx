@@ -5,8 +5,14 @@ import CustomButton from "../../Components/Common/CustomButton";
 import Header from "../../Components/Teacher/Header";
 import { useHeading } from "../../Hooks";
 import { localStorageKey_token, localStorageKey_user } from "../../Utils";
+import { useSelector } from "react-redux";
+import { appThemeSelector } from "../../Store/feature/appTheme/selector";
 
 const TeacherHome = () => {
+  const { quizzyAppColorMode } = useSelector(appThemeSelector);
+  const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
+  const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+
   const navigate = useNavigate();
   const { setHeading, setSubHeading } = useHeading();
   const userLoginInfo = JSON.parse(localStorage.getItem(localStorageKey_user));
@@ -21,8 +27,8 @@ const TeacherHome = () => {
   };
 
   return (
-    <div>
-      <Header showLogoutButton={true} />
+    <div className={`h-screen overflow-auto bg-${bgColor} text-${textColor}`}>
+      <Header showLogoutButton={true} className='h-16' />
 
       <h1 className="font-bold text-3xl text-center">Quizzy Home page</h1>
 

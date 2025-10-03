@@ -8,7 +8,6 @@ import SidebarElement from "./SidebarElement"
 import SidebarButton from "./SidebarButton"
 import { commonSelector } from '../../../Store/feature/common/selectors';
 import { toggleSidebar } from '../../../Store/feature/common/commonSlice';
-
 import '../../../App.css';
 
 function TeacherSidebar() {
@@ -33,7 +32,7 @@ function TeacherSidebar() {
                     />
                 </Link>
                 <Link to={'/teacher-home'}>
-                    <div className={`text-3xl font-bold ${isSidebarOpen ? '' : 'hidden'} bg-red-`}>Quizzy</div>
+                    <div className={`text-3xl font-bold ${isSidebarOpen ? '' : 'hidden'}`}>Quizzy</div>
                 </Link>
             </div>
 

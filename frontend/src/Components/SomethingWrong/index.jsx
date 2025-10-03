@@ -1,36 +1,18 @@
-import { useEffect, useState } from "react";
-import { localStorageKey_token, localStorageKey_user } from "../../Utils";
 import CustomButton from "../Common/CustomButton";
+import { useSelector } from "react-redux";
+import { appThemeSelector } from "../../Store/feature/appTheme/selector";
 
 function SomethingWrong() {
-    const [sec, setSec] = useState(5);
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setSec(prev => {
-                console.log('interval running')
-                if (prev == 1) {
-                    clearInterval(timer);
-                    return prev - 1;
-                }
-                return prev - 1;
-            })
-        }, 1000)
-    }, [])
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const textColor = quizzyAppColorMode === 'light' ? 'text-red-500' : 'text-red-300';
 
     return (
         <div>
-            <p className="text-red-500 text-center mt-10 text-3xl">Something went wrong</p>
+            <p className={`${textColor} text-center mt-10 text-3xl`}>Something went wrong</p>
 
-            <div className="flex justify-center items-end mt-3">
-                {sec === 0 ?
-                    <CustomButton className="px-5" onClick={() => window.location.reload()}>Retry</CustomButton> :
-                    <>
-                        <p className="text-red-500 text-center mt-5 text-xl">Please try again in</p>
-                        <p className="px-2 text-lg">{sec}</p>
-                        <p className="text-red-500 text-center mt-5 text-xl">seconds</p>
-                    </>
-                }
+            <div className={`${textColor} flex flex-col items-center mt-3 gap-4`}>
+                <p className="text-center text-xl">Please try again</p>
+                <CustomButton className="px-5" onClick={() => window.location.reload()}>Retry</CustomButton>
             </div>
         </div>
     )

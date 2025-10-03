@@ -15,9 +15,14 @@ import CreateAssesmentButton from "../../../../Components/Teacher/Assesments/Cre
 import FullQuestionComponent from "../../../../Components/Common/Question/FullQuestionComponent";
 import AuthFailed from "../../../../Components/AuthFailed";
 import SomethingWrong from "../../../../Components/SomethingWrong";
+import { appThemeSelector } from "../../../../Store/feature/appTheme/selector";
 
 
 function CreateAssesmentPage() {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
+    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+
     const { id } = useParams();
     const { isLoading } = useGetAssesmentQuery(id, {
         refetchOnMountOrArgChange: true,
@@ -47,7 +52,7 @@ function CreateAssesmentPage() {
         )
     }
 
-    if (error && error?.data?.authenticationFailed) {
+    if (error && (error?.data?.message)?.toLowerCase() === 'jwt expired') {
         return <AuthFailed />;
     }
     else if (error) {
@@ -56,7 +61,7 @@ function CreateAssesmentPage() {
 
 
     return (
-        <div className="max-h-full overflow-auto bg-white">
+        <div className={`max-h-full overflow-auto bg-${bgColor} text-${textColor}`}>
             {!id &&
                 <div>
                     <form className="flex flex-col gap-4">

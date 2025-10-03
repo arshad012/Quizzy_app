@@ -4,9 +4,14 @@ import { InputTypes, LabelPositionType } from "../../../../Common/inputs/Custome
 import { useDispatch, useSelector } from 'react-redux';
 import { templateSelector } from "../../../../../Store/feature/template/selectors";
 import { setTemplateKey } from "../../../../../Store/feature/template/templateSlice";
+import { appThemeSelector } from "../../../../../Store/feature/appTheme/selector";
 
 
 function TemplatesBasicDetailsForm() {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
+    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+
     const dispatch = useDispatch();
     const {title ,description ,subject ,gradeLevel} = useSelector(templateSelector);
 
@@ -17,10 +22,9 @@ function TemplatesBasicDetailsForm() {
         )
     }
 
-
     return (
         <div>
-            <div className="border rounded-xl p-3">
+            <div className={`border rounded-xl p-3 bg-${bgColor} text-${textColor}`}>
                 <h1 className="font-bold text-2xl border-b mb-4 pb-2">Basic Details</h1>
 
                 <form className="flex flex-col gap-4">

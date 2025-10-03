@@ -1,7 +1,12 @@
 import { Sparkle } from "lucide-react";
 import Markdown from 'react-markdown';
+import { useSelector } from "react-redux";
+import { appThemeSelector } from "../../../../../Store/feature/appTheme/selector";
 
 function AnswerComponent({ answer = "", showAnswer = true }) {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'green-50' : 'green-100';
+    const textColor = quizzyAppColorMode === 'light' ? 'green-800' : 'green-800';
 
     if (!answer || !showAnswer) return;
 
@@ -12,7 +17,7 @@ function AnswerComponent({ answer = "", showAnswer = true }) {
                 <Sparkle size={15} /> Answer
             </h3>
 
-            <div className="text-sm gap-2 p-4 border bg-green-50 text-green-800 rounded-lg max-h-[200px] overflow-y-auto">
+            <div className={`text-sm gap-2 p-4 border rounded-lg max-h-[200px] overflow-y-auto bg-${bgColor} text-${textColor}`}>
                 <Markdown>{answer}</Markdown>
             </div>
         </div>

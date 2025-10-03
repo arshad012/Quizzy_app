@@ -10,8 +10,12 @@ import { assesmentsColumns } from "./utils/assesmentsColumns";
 import CustomButton from "../../../Components/Common/CustomButton";
 import AuthFailed from "../../../Components/AuthFailed";
 import SomethingWrong from "../../../Components/SomethingWrong";
+import { useSelector } from "react-redux";
+import { appThemeSelector } from "../../../Store/feature/appTheme/selector";
 
 function TeacherAssesmentsPage() {
+    const { quizzyAppColorMode } = useSelector(appThemeSelector);
+
     const navigate = useNavigate();
     const { setHeading, setSubHeading } = useHeading();
 
@@ -26,7 +30,7 @@ function TeacherAssesmentsPage() {
         navigate('/teacher/assesment/create');
     }
 
-    if (error && error?.data?.authenticationFailed) {
+    if (error && (error?.data?.message)?.toLowerCase() === 'jwt expired') {
         return <AuthFailed />;
     }
     else if (error) {
@@ -34,7 +38,7 @@ function TeacherAssesmentsPage() {
     }
 
     return (
-        <div className="h-full overflow-auto bg-white">
+        <div className={`h-full overflow-auto bg-${quizzyAppColorMode === 'light' ? 'white' : 'black'}`}>
             <div>
                 <div className="mb-2">
                     <CustomButton onClick={handleClick}> <PlusIcon size={20} />  Create Assesment</CustomButton>
