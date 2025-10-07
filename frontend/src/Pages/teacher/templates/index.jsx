@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 
 function TeacherTemplatesPage() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
 
     const navigate = useNavigate();
     const { setHeading, setSubHeading } = useHeading();
@@ -36,7 +37,7 @@ function TeacherTemplatesPage() {
     }
 
     return (
-        <div className={`h-full overflow-auto bg-${quizzyAppColorMode === 'light' ? 'white' : 'black'}`}>
+        <div className={`h-full overflow-auto ${bgColor}`}>
             <div className="mb-2">
                 <CustomButton onClick={handleClick}>Create Template</CustomButton>
             </div>

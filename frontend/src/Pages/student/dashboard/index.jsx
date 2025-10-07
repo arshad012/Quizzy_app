@@ -8,8 +8,8 @@ import { useSelector } from "react-redux";
 
 function StudentDashboard() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
     const { setHeading, setSubHeading } = useHeading();
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function StudentDashboard() {
     }, [])
 
     return (
-        <div className={`h-full overflow-auto bg-${bgColor} text-${textColor}`}>
+        <div className={`h-full overflow-auto ${bgColor} ${textColor}`}>
             <div>Student dashboard</div>
             <Link to={"/student-home"}>
                 <CustomButton>Home</CustomButton>

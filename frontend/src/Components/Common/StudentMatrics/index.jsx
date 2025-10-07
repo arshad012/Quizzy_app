@@ -5,7 +5,7 @@ import { appThemeSelector } from "../../../Store/feature/appTheme/selector";
 
 function StudentMatrics({data}) {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const textColor = quizzyAppColorMode === 'light' ? 'gray-600' : 'gray-700';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-gray-600' : 'text-gray-300';
 
     return (
         <div>
@@ -14,7 +14,7 @@ function StudentMatrics({data}) {
                     getSubmissionMatrics(data).map(({ label, value, valueClassName }) => (
                         <div key={value} className="flex flex-col justify-between items-center">
                             <p className={`${valueClassName} text-2xl font-bold`}>{value}</p>
-                            <p className={`text-sm text-${textColor} text-center`}>{label}</p>
+                            <p className={`text-sm ${textColor} text-center`}>{label}</p>
                         </div>
                     ))
                 }

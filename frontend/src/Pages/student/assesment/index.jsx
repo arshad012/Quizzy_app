@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 
 function StudentAssesmentsPage() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
 
     const { setHeading, setSubHeading } = useHeading();
 
@@ -29,7 +30,7 @@ function StudentAssesmentsPage() {
     }
 
     return (
-        <div className={`h-full bg-${quizzyAppColorMode === 'light' ? 'white' : 'black'} overflow-auto`}>
+        <div className={`h-full ${bgColor} overflow-auto`}>
             <CustomTable
                 columns={assesmentsColumns}
                 data={rows}

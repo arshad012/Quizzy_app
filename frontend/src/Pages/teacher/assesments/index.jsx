@@ -15,6 +15,7 @@ import { appThemeSelector } from "../../../Store/feature/appTheme/selector";
 
 function TeacherAssesmentsPage() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
 
     const navigate = useNavigate();
     const { setHeading, setSubHeading } = useHeading();
@@ -38,7 +39,7 @@ function TeacherAssesmentsPage() {
     }
 
     return (
-        <div className={`h-full overflow-auto bg-${quizzyAppColorMode === 'light' ? 'white' : 'black'}`}>
+        <div className={`h-full overflow-auto ${bgColor}`}>
             <div>
                 <div className="mb-2">
                     <CustomButton onClick={handleClick}> <PlusIcon size={20} />  Create Assesment</CustomButton>

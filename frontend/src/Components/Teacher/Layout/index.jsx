@@ -10,12 +10,12 @@ function TeacherLayout() {
     const { isSidebarOpen } = useSelector(commonSelector);
 
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
 
     return (
         <div className='h-screen w-screen flex'>
-            <aside className={`${isSidebarOpen ? 'w-52' : 'w-15'} h-full transition-all bg-${bgColor} text-${textColor}`}>
+            <aside className={`${isSidebarOpen ? 'w-52' : 'w-15'} h-full transition-all ${bgColor} ${textColor}`}>
                 <TeacherSidebar />
             </aside>
 
@@ -23,7 +23,7 @@ function TeacherLayout() {
                 <div className='h-16'>
                     <Header />
                 </div>
-                <div className={`flex-1 p-2 bg-${quizzyAppColorMode === 'light' ? 'white' : 'black'} overflow-auto`}>
+                <div className={`flex-1 p-2 ${bgColor} overflow-auto`}>
                     <Outlet />
                 </div>
             </main>

@@ -14,8 +14,8 @@ import { appThemeSelector } from "../../../../Store/feature/appTheme/selector"
 
 function SubmissionPage() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
 
     const { setHeading, setSubHeading } = useHeading();
     const { id } = useParams();
@@ -40,7 +40,7 @@ function SubmissionPage() {
 
 
     return (
-        <div className={`h-full bg-${bgColor} text-${textColor} overflow-auto`}>
+        <div className={`h-full ${bgColor} ${textColor} overflow-auto`}>
             {data.status === SubmissionTypes.COMPLETED && <StudentMatrics data={data} />}
             <QuestionBreakdown data={data} />
         </div>

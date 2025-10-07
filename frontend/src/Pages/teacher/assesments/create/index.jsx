@@ -20,8 +20,8 @@ import { appThemeSelector } from "../../../../Store/feature/appTheme/selector";
 
 function CreateAssesmentPage() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
 
     const { id } = useParams();
     const { isLoading } = useGetAssesmentQuery(id, {
@@ -61,7 +61,7 @@ function CreateAssesmentPage() {
 
 
     return (
-        <div className={`max-h-full overflow-auto bg-${bgColor} text-${textColor}`}>
+        <div className={`max-h-full overflow-auto ${bgColor} ${textColor}`}>
             {!id &&
                 <div>
                     <form className="flex flex-col gap-4">

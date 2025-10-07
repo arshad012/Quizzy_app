@@ -8,8 +8,8 @@ import { appThemeSelector } from "../../../Store/feature/appTheme/selector";
 
 function TeacherDashboard() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
     const { setHeading, setSubHeading } = useHeading();
     const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ function TeacherDashboard() {
     }
 
     return (
-        <div className={`h-full overflow-auto bg-${bgColor} text-${textColor}`}>
+        <div className={`h-full overflow-auto ${bgColor} ${textColor}`}>
             <div className="mb-2">
                 <CustomButton onClick={handleClick}>Home</CustomButton>
             </div>

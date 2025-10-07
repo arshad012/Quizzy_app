@@ -7,8 +7,8 @@ import { appThemeSelector } from "../../Store/feature/appTheme/selector";
 
 function Signup() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
     const { setHeading } = useHeading();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ function Signup() {
     }, [])
 
     return (
-        <div className={`bg-${bgColor} text-${textColor} h-screen overflow-auto`}>
+        <div className={`${bgColor} ${textColor} h-screen overflow-auto`}>
             <Header className="h-16" />
             <SignupForm />
         </div>

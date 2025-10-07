@@ -9,14 +9,13 @@ import CustomInputs from "../../Components/Common/inputs/CustomeInputs";
 import CustomButton from "../../Components/Common/CustomButton";
 import { InputTypes } from "../../Components/Common/inputs/CustomeInputs/types";
 import { localStorageKey_token, localStorageKey_user } from "../../Utils";
-import styles from './login.module.css';
 import { useSelector } from "react-redux";
 import { appThemeSelector } from "../../Store/feature/appTheme/selector";
 
 function Login() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
 
     const navigate = useNavigate();
     const { setHeading } = useHeading();
@@ -114,10 +113,10 @@ function Login() {
     }
 
     return (
-        <div className={`bg-${bgColor} text-${textColor} h-screen`}>
+        <div className={`${bgColor} ${textColor} h-screen`}>
             <Header className="h-16" />
             {/*  */}
-            <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 shadow-xl bg-${bgColor} text-${textColor} ${''}`}>
+            <div className={`border border-gray-300 rounded-lg w-110 mx-auto my-5 px-5 py-4 shadow-xl ${bgColor} ${textColor}`}>
 
                 <p className="text-center text-3xl font-bold">Quizzy</p>
                 <p className="text-center">Enter your login credentials</p>

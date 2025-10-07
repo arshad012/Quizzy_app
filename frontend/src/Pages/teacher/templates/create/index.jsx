@@ -20,7 +20,7 @@ import { appThemeSelector } from "../../../../Store/feature/appTheme/selector";
 
 function CreateTemplatePage() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
 
     const { setHeading, setSubHeading } = useHeading();
     const dispatch = useDispatch();
@@ -52,7 +52,7 @@ function CreateTemplatePage() {
     }
 
     return (
-        <div className={`h-full overflow-auto bg-${bgColor}`}>
+        <div className={`h-full overflow-auto ${bgColor}`}>
             <TemplatesBasicDetailsForm />
 
             <hr className={`my-5 ${quizzyAppColorMode === 'light' ? 'border-black' : 'border-white'}`} />

@@ -12,7 +12,7 @@ import { appThemeSelector } from "../../../Store/feature/appTheme/selector";
 
 function StudentSubmissionsPage() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
 
     const { setHeading, setSubHeading } = useHeading();
 
@@ -31,7 +31,7 @@ function StudentSubmissionsPage() {
     }
 
     return (
-        <div className={`h-full bg-${bgColor} overflow-auto`}>
+        <div className={`h-full ${bgColor} overflow-auto`}>
             <h1 className={`text-center font-bold text-2xl ${quizzyAppColorMode === 'light' ? 'text-gray-500' : 'text-gray-300'} py-4`}>All Submissions</h1>
             
             <CustomTable

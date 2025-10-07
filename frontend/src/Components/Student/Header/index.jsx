@@ -10,8 +10,8 @@ function Header({ showLogoutButton = false, className = "h-full" }) {
     const { heading, subHeading } = useHeading();
 
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
 
     const handleLogout = () => {
         localStorage.removeItem(localStorageKey_user);
@@ -24,7 +24,7 @@ function Header({ showLogoutButton = false, className = "h-full" }) {
     }
 
     return (
-        <nav className={`w-full border-b top-0 sticky p-2 flex justify-between items-center z-100 bg-${bgColor} text-${textColor} ${className}`}>
+        <nav className={`w-full border-b top-0 sticky p-2 flex justify-between items-center z-100 ${bgColor} ${textColor} ${className}`}>
             <div className={`flex flex-col justify-center`}>
                 <div className="text-2xl font-bold">{heading}</div>
                 {subHeading && <div className="text-sm">{subHeading}</div>}

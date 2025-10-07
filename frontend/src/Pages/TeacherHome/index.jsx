@@ -10,8 +10,8 @@ import { appThemeSelector } from "../../Store/feature/appTheme/selector";
 
 const TeacherHome = () => {
   const { quizzyAppColorMode } = useSelector(appThemeSelector);
-  const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-  const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+  const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+  const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
 
   const navigate = useNavigate();
   const { setHeading, setSubHeading } = useHeading();
@@ -27,7 +27,7 @@ const TeacherHome = () => {
   };
 
   return (
-    <div className={`h-screen overflow-auto bg-${bgColor} text-${textColor}`}>
+    <div className={`h-screen overflow-auto ${bgColor} ${textColor}`}>
       <Header showLogoutButton={true} className='h-16' />
 
       <h1 className="font-bold text-3xl text-center">Quizzy Home page</h1>

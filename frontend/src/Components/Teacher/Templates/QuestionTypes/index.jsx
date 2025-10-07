@@ -5,15 +5,15 @@ import { appThemeSelector } from "../../../../Store/feature/appTheme/selector";
 
 function QuestionTypes() {
     const { quizzyAppColorMode } = useSelector(appThemeSelector);
-    const bgColor = quizzyAppColorMode === 'light' ? 'white' : 'black';
-    const textColor = quizzyAppColorMode === 'light' ? 'black' : 'white';
+    const bgColor = quizzyAppColorMode === 'light' ? 'bg-white' : 'bg-black';
+    const textColor = quizzyAppColorMode === 'light' ? 'text-black' : 'text-white';
 
     const { questionTypes = [] } = useSelector(templateSelector);
 
     if(questionTypes.length === 0) return null;
 
     return (
-        <div className={`flex flex-col gap-2 bg-${bgColor} text-${textColor}`}>
+        <div className={`flex flex-col gap-2 ${bgColor} ${textColor}`}>
             {
                 questionTypes.map((_, i) => (
                     <QuestionType key={i} index={i} />
